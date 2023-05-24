@@ -108,7 +108,7 @@
       background-color: rgb(24, 165, 24);
     }
 
-    .rap_btn {
+    .lap_btn {
       background-color: blue;
     }
 
@@ -116,7 +116,7 @@
       background-color: red;
     }
 
-    .rap_btn:hover {
+    .lap_btn:hover {
       background-color: rgb(66, 66, 250);
     }
 
@@ -124,14 +124,14 @@
       background-color: rgb(249, 96, 96);
     }
 
-    .rap {
+    .lap {
       width: 300px;
       height: 600px;
 
       border: 1px solid white;
     }
 
-    .rap_top {
+    .lap_top {
       width: 300px;
       height: 50px;
 
@@ -162,7 +162,7 @@
       align-items: center;
     }
 
-    .rap_mid {
+    .lap_mid {
       width: 300px;
       height: 550px;
 
@@ -172,31 +172,31 @@
       overflow-x: hidden;
     }
 
-    .rap_mid::-webkit-scrollbar {
+    .lap_mid::-webkit-scrollbar {
       width: 15px;
       border-left: 1px solid rgb(62, 61, 61);
     }
 
-    .rap_mid::-webkit-scrollbar-thumb {
+    .lap_mid::-webkit-scrollbar-thumb {
       background: gray;
       background-clip: padding-box;
       border: 4px solid transparent;
       border-radius: 8px;
     }
 
-    .rap_mid::-webkit-scrollbar-track {
+    .lap_mid::-webkit-scrollbar-track {
       background: black
       /*스크롤바 뒷 배경 색상*/
     }
 
-    .rap_box1 {
+    .lap_box1 {
       width: 100px;
       height: 550px;
 
       color: white;
     }
 
-    .rap_box2 {
+    .lap_box2 {
       width: 180px;
       height: 550px;
 
@@ -244,18 +244,18 @@
       </div>
 
       <div class="btns2 hidden">
-        <button type="button" class="rap_btn">rap</button>
+        <button type="button" class="lap_btn">lap</button>
         <button type="button" class="stop_btn">stop</button>
       </div>
     </div>
-    <div class="rap">
-      <div class="rap_top">
+    <div class="lap">
+      <div class="lap_top">
         <div class="top_1">count</div>
-        <div class="top_2">rap time</div>
+        <div class="top_2">lap time</div>
       </div>
-      <div class="rap_mid">
-        <div class="rap_box1"></div>
-        <div class="rap_box2"></div>
+      <div class="lap_mid">
+        <div class="lap_box1"></div>
+        <div class="lap_box2"></div>
       </div>
     </div>
   </div>
@@ -289,7 +289,7 @@
 
     const start_btn = document.querySelector('.start_btn');
     const reset_btn = document.querySelector('.reset_btn');
-    const rap_btn = document.querySelector('.rap_btn');
+    const lap_btn = document.querySelector('.lap_btn');
     const stop_btn = document.querySelector('.stop_btn');
     const btns = document.querySelector('.btns');
     const btns2 = document.querySelector('.btns2');
@@ -310,13 +310,13 @@
       z = Number(ms.textContent);
     })
 
-    const rap_mid = document.querySelector('.rap_mid');
-    const rap_box1 = document.querySelector('.rap_box1');
-    const rap_box2 = document.querySelector('.rap_box2');
+    const lap_mid = document.querySelector('.lap_mid');
+    const lap_box1 = document.querySelector('.lap_box1');
+    const lap_box2 = document.querySelector('.lap_box2');
 
 
     count = 1;
-    rap_btn.addEventListener('click', (event) => {
+    lap_btn.addEventListener('click', (event) => {
 
       let saveId = [];
 
@@ -329,7 +329,7 @@
         div.classList.add('mid_1');
         div.textContent = saveId[i][0];
 
-        rap_box1.appendChild(div);
+        lap_box1.appendChild(div);
       }
 
       for (let i = 0; i < saveId.length; i++) {
@@ -337,7 +337,7 @@
         div.classList.add('mid_2');
         div.textContent = saveId[i][1];
 
-        rap_box2.appendChild(div);
+        lap_box2.appendChild(div);
       }
     })
 
