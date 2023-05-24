@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: black;
+    }
+
+    .container {
+      width: 1000px;
+      height: 600px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-left: 300px;
+    }
+
+    .timmer {
+      width: 650px;
+      height: 600px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      color: white;
+    }
+
+    .time {
+      width: 500px;
+      height: 200px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-right: 50px;
+      font-size: 100px;
+    }
+
+    .time_item {
+      width: 150px;
+      height: 150px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btns {
+      width: 400px;
+      height: 200px;
+
+      margin-right: 60px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btns2 {
+      width: 400px;
+      height: 200px;
+
+      margin-right: 60px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      width: 100px;
+      height: 50px;
+
+      margin: 30px;
+      font-size: 20px;
+    }
+
+    .reset_btn {
+      background-color: yellow;
+    }
+
+    .start_btn {
+      background-color: green;
+    }
+
+    .reset_btn:hover {
+      background-color: rgb(255, 255, 93);
+    }
+
+    .start_btn:hover {
+      background-color: rgb(24, 165, 24);
+    }
+
+    .rap_btn {
+      background-color: blue;
+    }
+
+    .stop_btn {
+      background-color: red;
+    }
+
+    .rap_btn:hover {
+      background-color: rgb(66, 66, 250);
+    }
+
+    .stop_btn:hover {
+      background-color: rgb(249, 96, 96);
+    }
+
+    .rap {
+      width: 300px;
+      height: 600px;
+
+      border: 1px solid white;
+    }
+
+    .rap_top {
+      width: 300px;
+      height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: white;
+      border-bottom: 1px solid white;
+      box-sizing: border-box;
+    }
+
+    .top_1 {
+      width: 100px;
+      height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .top_2 {
+      width: 200px;
+      height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .rap_mid {
+      width: 300px;
+      height: 550px;
+
+      display: flex;
+      position: relative;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    .rap_mid::-webkit-scrollbar {
+      width: 15px;
+      border-left: 1px solid rgb(62, 61, 61);
+    }
+
+    .rap_mid::-webkit-scrollbar-thumb {
+      background: gray;
+      background-clip: padding-box;
+      border: 4px solid transparent;
+      border-radius: 8px;
+    }
+
+    .rap_mid::-webkit-scrollbar-track {
+      background: black
+      /*스크롤바 뒷 배경 색상*/
+    }
+
+    .rap_box1 {
+      width: 100px;
+      height: 550px;
+
+      color: white;
+    }
+
+    .rap_box2 {
+      width: 180px;
+      height: 550px;
+
+      color: white;
+    }
+
+    .mid_1 {
+      width: 100px;
+      height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mid_2 {
+      width: 180px;
+      height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="timmer">
+      <div class="time">
+        <div class="m time_item">00</div>
+        :
+        <div class="s time_item">00</div>
+        .
+        <div class="ms time_item">00</div>
+      </div>
+      <div class="btns">
+        <button type="button" class="reset_btn" disabled="disabled">reset</button>
+        <button type="button" class="start_btn">start</button>
+      </div>
+
+      <div class="btns2 hidden">
+        <button type="button" class="rap_btn">rap</button>
+        <button type="button" class="stop_btn">stop</button>
+      </div>
+    </div>
+    <div class="rap">
+      <div class="rap_top">
+        <div class="top_1">count</div>
+        <div class="top_2">rap time</div>
+      </div>
+      <div class="rap_mid">
+        <div class="rap_box1"></div>
+        <div class="rap_box2"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let intervalId = null;
+    const m = document.querySelector('.m');
+    const s = document.querySelector('.s');
+    const ms = document.querySelector('.ms');
+
+    let x = 0;
+    let y = 0;
+    let z = 0;
+
+    function stopwatch() {
+      const time = document.querySelector('.time');
+      const getTime = new Date().getTime();
+
+      intervalId = setInterval(() => {
+        const resultTime = Math.trunc((new Date().getTime() - getTime) / 10);
+
+        const mm = Math.trunc(resultTime / 100 / 60);
+        const ss = (Math.trunc(resultTime / 100)) % 60;
+        const msms = resultTime % 100;
+
+        m.textContent = `${(x + mm) % 60}`.padStart(2, '0');
+        s.textContent = `${(y + ss) % 60}`.padStart(2, '0');
+        ms.textContent = `${(z + msms) % 100}`.padStart(2, '0');
+      }, 10);
+    }
+
+    const start_btn = document.querySelector('.start_btn');
+    const reset_btn = document.querySelector('.reset_btn');
+    const rap_btn = document.querySelector('.rap_btn');
+    const stop_btn = document.querySelector('.stop_btn');
+    const btns = document.querySelector('.btns');
+    const btns2 = document.querySelector('.btns2');
+
+    start_btn.addEventListener('click', (event) => {
+      reset_btn.removeAttribute('disabled');
+      btns2.classList.remove('hidden');
+      btns.classList.add('hidden');
+      stopwatch();
+    })
+
+    stop_btn.addEventListener('click', (event) => {
+      clearInterval(intervalId);
+      btns2.classList.add('hidden');
+      btns.classList.remove('hidden');
+      x = Number(m.textContent);
+      y = Number(s.textContent);
+      z = Number(ms.textContent);
+    })
+
+    const rap_mid = document.querySelector('.rap_mid');
+    const rap_box1 = document.querySelector('.rap_box1');
+    const rap_box2 = document.querySelector('.rap_box2');
+
+
+    count = 1;
+    rap_btn.addEventListener('click', (event) => {
+
+      let saveId = [];
+
+      let temp = `${m.textContent} : ${s.textContent} . ${ms.textContent}`;
+      saveId.push([count, temp]);
+      count += 1;
+
+      for (let i = 0; i < saveId.length; i++) {
+        const div = document.createElement('div');
+        div.classList.add('mid_1');
+        div.textContent = saveId[i][0];
+
+        rap_box1.appendChild(div);
+      }
+
+      for (let i = 0; i < saveId.length; i++) {
+        const div = document.createElement('div');
+        div.classList.add('mid_2');
+        div.textContent = saveId[i][1];
+
+        rap_box2.appendChild(div);
+      }
+    })
+
+    reset_btn.addEventListener('click', (event) => {
+      window.location.reload();
+    })
+
+  </script>
+</body>
+
+</html>
